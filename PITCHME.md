@@ -350,6 +350,8 @@ fun tryWhen(val x: Int): Unit {
 }
 ```
 
+---
+
 ### 
 
 SAM Conversions
