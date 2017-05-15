@@ -367,7 +367,7 @@ executor.execute { println("This runs in a thread pool") }
 
 ---
 
-###
+### Java method overloading
 
 ```java
 public String foo(String name, int number, boolean toUpperCase) {
@@ -383,9 +383,18 @@ public String foo(String name) {
     return foo(name, 42);
 }
 ```
+
+---
+
+### Can be replaced with one function
+
 ```kotlin
-fun foo(name: String, number: Int = 42, toUpperCase: Boolean = false) =
-        (if (toUpperCase) name.toUpperCase() else name) + number
+fun foo(name: String, 
+        number: Int = 42, 
+        toUpperCase: Boolean = false) =
+             (if (toUpperCase) name.toUpperCase() else name) + number
+```
+```java
 fun useFoo() = listOf(
         foo("a"),
         foo("b", number = 1),
