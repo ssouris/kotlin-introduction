@@ -442,3 +442,9 @@ interface Mailer {
     fun sendMessage(email: String, message: String)
 }
 ```
+
+---
+
+###
+
+Supports incremental compilation
