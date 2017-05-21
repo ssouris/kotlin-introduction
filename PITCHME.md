@@ -463,6 +463,50 @@ interface Mailer {
 
 ---
 
-###
+### Zero boilerplate delegation in Kotlin
+
+```kotlin
+class CopyPrinter(copier: Copy, printer: Print) : Copy by copier, Print by printer
+
+interface Copy {
+    fun copy(page: Page): Page
+}
+
+interface Print {
+    fun print(page: Page)
+}
+```
+
+---
+
+### Java decompiled code
+
+```java
+public final class CopyPrinter implements Copy, Print {
+   private final Copy $$delegate_0;// $FF: synthetic field
+   private final Print $$delegate_1;// $FF: synthetic field
+
+   public CopyPrinter(@NotNull Copy copier, @NotNull Print printer) {
+      Intrinsics.checkParameterIsNotNull(copier, "copier");
+      Intrinsics.checkParameterIsNotNull(printer, "printer");
+      super();
+      this.$$delegate_0 = copier;
+      this.$$delegate_1 = printer;
+   }
+
+   @NotNull
+   public Page copy(@NotNull Page page) {
+      Intrinsics.checkParameterIsNotNull(page, "page");
+      return this.$$delegate_0.copy(page);
+   }
+
+   public void print(@NotNull Page page) {
+      Intrinsics.checkParameterIsNotNull(page, "page");
+      this.$$delegate_1.print(page);
+   }
+}
+....
+```
+--- 
 
 Supports incremental compilation
