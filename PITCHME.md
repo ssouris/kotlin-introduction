@@ -24,7 +24,7 @@ A practical intro to kotlin for java devs.
 
 ---
 
-### Zero boilerplate delegation in Kotlin
+### Delegation in Kotlin (zero boilerplage)
 - Prefere Composition over inheritance (Effective Java item #16)
 ```kotlin
 class CopyPrinter(copier: Copy, printer: Print) : Copy by copier, Print by printer
