@@ -22,24 +22,6 @@
 
 ---
 
-### Delegation in Kotlin (zero boilerplage)
-- Prefere Composition over inheritance (Effective Java item #16)
-```kotlin
-class CopyPrinter(copier: Copy, printer: Print) : Copy by copier, Print by printer
-
-interface Copy {
-    fun copy(page: Page): Page
-}
-
-interface Print {
-    fun print(page: Page)
-}
-
-class Page
-```
-
----
-
 ### More about Kotlin
 
  - String templates
@@ -57,7 +39,6 @@ class Page
  - No semi-colon
  - single expression functions
  - when expression
- - let, apply, use, with
  - collections
 
 ---
@@ -89,7 +70,7 @@ class Page
 
 ---
 
-## Compared to other runtimes and guava :P
+## Compared to other runtimes
 
 <table>
   <tr>
@@ -124,7 +105,7 @@ class Page
 val aString = "Lorem ipsum" // no semicolons
 
 // var = mutable obect
-var anotherString = aString
+var mutableString = "Lorem ipsum"
 ```
 
 ---
@@ -132,13 +113,13 @@ var anotherString = aString
 #### type inference
 
 ```kotlin
-val anInt = 42 // <- compiler detucts type to Int
+val anInt = 42 // <- compiler infers type to Int
 val someString = "Lorem Ipsum"
 ```
 
 ---
 
-#### function structure
+#### functions
 
 ```kotlin
 fun add(left: Int, right: Int): Int {
@@ -151,7 +132,6 @@ fun add(left: Int, right: Int): Int {
 #### named & default args
 
 ```kotlin
-// note optional return type
 fun sayHi(greeting: String = "Howdy",
           name: String = "Honored Guest") {
     println("$greeting, $name!")
@@ -167,7 +147,7 @@ fun main(args: Array<String>) {
 
 ---
 
-## If statement as an expression stage 1
+## If statement as an expression 1/3
 
 ```kotlin
 fun getServiceResult(condition: Boolean): String {
@@ -183,7 +163,7 @@ fun getServiceResult(condition: Boolean): String {
 
 ---
 
-## If statement as an expression stage 2
+## If statement as an expression 2/3
 
 ```kotlin
 // or even better:
@@ -197,7 +177,7 @@ fun getServiceResult(condition: Boolean): String {
 ```
 ---
 
-### If statement as an expression stage 3
+### If statement as an expression 3/3
 
 ```kotlin
 // whaaat
@@ -227,9 +207,6 @@ class MainClass {
 
 ```kotlin
 fun `extension methods`() {
-  // there are also extension methods
-  // that were solely missed in Java
-  // and why we see a lot of utility classes
 
   fun Date.isTuesday() : Boolean {
     return day == 2
@@ -241,7 +218,6 @@ fun `extension methods`() {
   } else {
     println("The epoch was not a Tuesday.")
   }
-  // and it end up being a statis method in bytecode
 }
 ```
 
@@ -266,20 +242,22 @@ fun `Higher order functions`() {
 ### Other goodies
 
 ```kotlin
-// deconstruction
-val (name, email, id) = tuple("Stathis", "stathis.souris@stathis.com", 1);
+// decomposing parameters
+val (name, email, id) = Tuple("Stathis", "stathis.souris@stathis.com", 1);
 
 val (firstName, lastName) = Customer(firstName="lol", lastName = "lol1")
 
-val listOfNumers = 1..100
-for (numer in listOfNumers) {
-  println(numer)
-}
-    
 val countryAndCity = listOf(Pair("Madrid", "Spain"), "Paris" to "France")
 for ((city, country) in countryAndCity) {
   ...
 }
+
+// ranges
+val listOfNumers = 1..100
+for (numer in listOfNumers) {
+  println(numer)
+}
+
 ```
 
 ---
@@ -287,14 +265,16 @@ for ((city, country) in countryAndCity) {
 ### Smart cast
 
 ```kotlin
-// castings
-// by default final cannot inherit from them
+// classes by default final, add `open` to inherit from
 open class Person { }
+
 class Employee(val vacationDays: Int): Person() {}
+
 class Contractor: Person()
 
 fun validateVacations(person: Person) {
   if (person is Employee) {
+    
     // casting is inferred by the compiler (smart cast)
     if (person.vacationDays != 20) {
       println("You need to take some more time off!")
@@ -305,7 +285,7 @@ fun validateVacations(person: Person) {
 
 ---
 
-### Safe navigation and forcing navigastion even in nullable type
+### Safe navigation
 
 ```kotlin
 class CustomerServiceInKotlin {
@@ -327,7 +307,6 @@ class CustomerServiceInKotlin {
 ### Micro DSL 
 
 ```kotlin
-// micro DSL to my lang
 fun using(obj: Closeable, action: () -> Unit) {
   try {
     action()
@@ -370,9 +349,7 @@ fun tryWhen(val x: Int): Unit {
 
 ### 
 
-SAM Conversions
-Just like Java 8, Kotlin supports SAM conversions. This means that Kotlin function literals can be automatically converted into implementations of Java interfaces with a single non-default method, as long as the parameter types of the interface method match the parameter types of the Kotlin function.
-You can use this for creating instances of SAM interfaces:
+SAM Conversions:
 
 ```kotlin
 val runnable = Runnable { println("This runs in a runnable") }
@@ -409,14 +386,12 @@ fun foo(name: String,
         number: Int = 42, 
         toUpperCase: Boolean = false) =
              (if (toUpperCase) name.toUpperCase() else name) + number
-```
-```java
+             
 fun useFoo() = listOf(
         foo("a"),
         foo("b", number = 1),
         foo("c", toUpperCase = true),
-        foo(name = "d", number = 2, toUpperCase = true)
-)
+        foo(name = "d", number = 2, toUpperCase = true))
 ```
 
 ---
@@ -426,9 +401,7 @@ fun useFoo() = listOf(
 ```java
 public void sendMessageToClient(
     @Nullable Client client,
-    @Nullable String message,
-    @NotNull Mailer mailer
-) {
+    @Nullable String message) {
     if (client == null || message == null) return;
 
     PersonalInfo personalInfo = client.getPersonalInfo();
@@ -437,7 +410,7 @@ public void sendMessageToClient(
     String email = personalInfo.getEmail();
     if (email == null) return;
 
-    mailer.sendMessage(email, message);
+    sendMessage(email, message);
 }
 ```
 
@@ -447,21 +420,19 @@ public void sendMessageToClient(
 
 ```kotlin
 fun sendMessageToClient(
-        client: Client?, message: String?, mailer: Mailer
-){
-    mailer.sendMessage(client?.personalInfo?.email ?: return, message ?: return );
+        client: Client?, message: String?) {
+    sendMessage(client?.personalInfo?.email ?: return, message ?: return );
 }
 
 class Client (val personalInfo: PersonalInfo?)
+
 class PersonalInfo (val email: String?)
-interface Mailer {
-    fun sendMessage(email: String, message: String)
-}
+
 ```
 
 ---
 
-### Zero boilerplate delegation in Kotlin
+### Delegation in Kotlin
 
 ```kotlin
 class CopyPrinter(copier: Copy, printer: Print) : Copy by copier, Print by printer
