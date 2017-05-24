@@ -496,4 +496,15 @@ fun eval(e: Expr): Int =
 
 ---
 
+### Don't do this :)
+
+```kotlin
+infix fun CharSequence.`are you ok man`(arg1 : String) = println("Yeap")
+
+fun main(args: Array<String>) {
+    "Stathis Souris " `are you ok man` "?"
+}
+```
+---
+
 Q/A
