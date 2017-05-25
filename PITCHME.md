@@ -14,7 +14,6 @@ by Stathis Souris
 - Java, Scala, Kotlin, Ceylon, Frege, Groovy, Fantom, Gosu, ...
 - Groovy, Clojure, JRuby, Jython, Golo
 
-attributes to Russel Winder talk on DevoxUK
 ---
 
 ### Why we need change?
