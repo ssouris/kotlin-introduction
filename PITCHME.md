@@ -34,6 +34,18 @@
  - Default values for function parameters
  
 ---
+
+### The Java Platform is...
+
+- ...a mature and extensive hardware independent platform.
+- ...evolving very, very slowly
+- ...a platform for many programming languages:
+- Java, Scala, Kotlin, Ceylon, Frege, Groovy, Fantom, Gosu, ...
+- Groovy, Clojure, JRuby, Jython, Golo
+
+attributes to Russel Winder talk on DevoxUK
+
+---
  
  - Extension Functions
  - No semi-colon
