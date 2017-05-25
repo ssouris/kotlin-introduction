@@ -501,14 +501,14 @@ fun main(args: Array<String>) {
 ```
 ---
 
-### Links
-
 - Devoxx UK 2017 - Russel Winder 
   https://www.youtube.com/watch?v=cFL_DDXBkJQ
   https://github.com/russel/Factorial
 - Jake Wharton pitch
   https://docs.google.com/document/d/1ReS3ep-hjxWA8kZi0YqDbEhCqTt29hG8P44aA9W0DM8/edit
-
+- Spring Framework support
+  https://spring.io/blog/2017/01/04/introducing-kotlin-support-in-spring-framework-5-0
+  
 ---
 
 Q/A
