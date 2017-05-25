@@ -22,15 +22,12 @@ Russia (the name comes from Kotlin Island, near St. Petersburg).
   - Open programming styles
   - Java Interoperability
   - Fully open source under Apache 2.0
-  - Static typing & type inference
   - Modern language features
-  - 1st grade tooling
-
+  - String templates
 ---
 
 ### More about Kotlin
 
- - String templates
  - Properties
  - Lamdas (nuff said)
  - Data class
