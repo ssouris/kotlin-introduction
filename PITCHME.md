@@ -32,6 +32,14 @@
  - Null Safety
  - Lazy property
  - Default values for function parameters
+
+---
+ 
+ - Extension Functions
+ - No semi-colon
+ - single expression functions
+ - when expression
+ - collections
  
 ---
 
@@ -44,15 +52,6 @@
 - Groovy, Clojure, JRuby, Jython, Golo
 
 attributes to Russel Winder talk on DevoxUK
-
----
- 
- - Extension Functions
- - No semi-colon
- - single expression functions
- - when expression
- - collections
-
 ---
 
 ### Kotlin runtime
