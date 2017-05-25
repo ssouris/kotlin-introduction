@@ -6,6 +6,27 @@ by Stathis Souris
 
 ---
 
+### The Java Platform is...
+
+- ...a mature and extensive hardware independent platform.
+- ...evolving very, very slowly
+- ...a platform for many programming languages:
+- Java, Scala, Kotlin, Ceylon, Frege, Groovy, Fantom, Gosu, ...
+- Groovy, Clojure, JRuby, Jython, Golo
+
+attributes to Russel Winder talk on DevoxUK
+---
+
+### Why we need change?
+
+- Change threatens backward compatibility
+- Change enabled new knowledge, new techniques, new tools
+- How do we make SF easier and nicer for ourselves
+- Where would we be if we didn't embrace change 
+   (Machine language?, Assembly?)
+
+---
+
 ### What is Kotlin?
 
 Kotlin is a statically-typed programming language that runs on the Java Virtual Machine 
@@ -16,25 +37,22 @@ Russia (the name comes from Kotlin Island, near St. Petersburg).
 ---
 
 ### Why Kotlin?
-  - Concise & Smarter API
+  - Open source under Apache 2.0
+  - Expressive
   - Null Safety & Immutability
-  - Type Inference, Static Typing & Smart Casts
-  - Open programming styles
+  - Type Inference, Smart Casts
   - Java Interoperability
-  - Fully open source under Apache 2.0
-  - Modern language features
   - String templates
+  - Open programming styles
 ---
 
 ### More about Kotlin
 
- - Properties
- - Lamdas (nuff said)
+ - Lamdas feel at home (nuff said)
  - Data class
- - Lazy property
  - Default values for function parameters
  - Extension Functions
- - when expression
+ - when expression (switch on steroids)
  
 ---
  
@@ -93,35 +111,15 @@ Russia (the name comes from Kotlin Island, near St. Petersburg).
 
 ---
 
-### The Java Platform is...
-
-- ...a mature and extensive hardware independent platform.
-- ...evolving very, very slowly
-- ...a platform for many programming languages:
-- Java, Scala, Kotlin, Ceylon, Frege, Groovy, Fantom, Gosu, ...
-- Groovy, Clojure, JRuby, Jython, Golo
-
-attributes to Russel Winder talk on DevoxUK
----
-
-### Why we need change?
-
-- Change threatens backward compatibility
-- Change enabled new knowledge, new techniques, new tools
-- How do we make SF easier and nicer for ourselves
-- Where would we be if we didn't embrace change 
-   (Machine language?, Assembly?)
-
----
-
 #### val/var
 
 ```kotlin
 // val = immutable object
-val aString = "Lorem ipsum" // no semicolons
+val aString : String = "Lorem ipsum" // no semicolons
+aString = "Lorem Ipsum Lorem ipsum" // compiler error
 
 // var = mutable obect
-var mutableString = "Lorem ipsum"
+var mutableString :String = "Lorem ipsum"// underlined by IDE
 ```
 
 ---
@@ -129,7 +127,7 @@ var mutableString = "Lorem ipsum"
 #### type inference
 
 ```kotlin
-val anInt = 42 // <- compiler infers type to Int
+val anInt = 42 // compiler infers type to Int
 val someString = "Lorem Ipsum"
 ```
 
@@ -148,25 +146,25 @@ fun add(left: Int, right: Int): Int {
 #### named & default args
 
 ```kotlin
-fun sayHi(greeting: String = "Howdy",
-          name: String = "Honored Guest") {
-    println("$greeting, $name!")
+fun sayHi(hello: String = "Hello",
+          world: String = "World") {
+    println("$hello, $world!")
 }
 
 fun main(args: Array<String>) {
-    sayHi()
-    sayHi(name = "Shane")
-    sayHi(name = "Dave",
-            greeting = "Welcome to the conference room")
+    sayHi()                 // Hello World!
+    sayHi(name = "Stathis") // Hello Stathis!
+    sayHi(name = "Stathis",    // Stathis lorem ipsum!
+            greeting = "lorem ipsum")
 }
 ```
 
 ---
 
-## If statement as an expression 1/3
+## If statement as an expression (Java style) 1/3
 
 ```kotlin
-fun getServiceResult(condition: Boolean): String {
+fun getResult(condition: Boolean): String {
     val result = null
     if (condition) {
         result = "Service OK"
@@ -179,11 +177,10 @@ fun getServiceResult(condition: Boolean): String {
 
 ---
 
-## If statement as an expression 2/3
+## If statement as an expression (better) 2/3
 
 ```kotlin
-// or even better:
-fun getServiceResult(condition: Boolean): String {
+fun getResult(condition: Boolean): String {
     return if (condition) {
         "Service OK"
     } else {
@@ -193,11 +190,10 @@ fun getServiceResult(condition: Boolean): String {
 ```
 ---
 
-### If statement as an expression 3/3
+### If statement as an expression (Kotlin way) 3/3
 
 ```kotlin
-// whaaat
-fun getServiceResult(condition: Boolean) = 
+fun getResult(condition: Boolean) = 
   if (condition) "Service OK" else "Service Failure"
 ```
 
@@ -208,12 +204,10 @@ fun getServiceResult(condition: Boolean) =
 ```kotlin
 val customer = Customer("Stathis", "Souris")
 
-class MainClass {
-    fun main (args: List<String>) {
-        println("Name is ${customer.firstName}")
-        // or if i want the toString I just omit the properties
-        println("Name is $customer")
-    }
+fun main (args: List<String>) {
+  println("Name is ${customer.firstName}")
+  // or if i want the toString I just omit the properties
+  println("Name is $customer")
 }
 ```
 
@@ -222,18 +216,15 @@ class MainClass {
 ### Extension methods
 
 ```kotlin
-fun `extension methods`() {
+fun Date.isTuesday() : Boolean {
+  return day == 2
+}
 
-  fun Date.isTuesday() : Boolean {
-    return day == 2
-  }
-
-  val epoch: Date = Date(1970, 0, 0)
-  if (epoch.isTuesday()) {
-    println("The epoch was a Tuesday.")
-  } else {
-    println("The epoch was not a Tuesday.")
-  }
+val epoch: Date = Date(1970, 0, 0)
+if (epoch.isTuesday()) {
+  println("The epoch was a Tuesday.")
+} else {
+  println("The epoch was not a Tuesday.")
 }
 ```
 
@@ -243,25 +234,15 @@ fun `extension methods`() {
 
 ```kotlin
 // decomposing parameters
-val (name, email, id) = 
-    Tuple("Stathis", "stathis.souris@stathis.com", 1);
-
-val (firstName, lastName) = 
-    Customer(firstName="lol", lastName = "lol1")
-
+val (name, email, id) = Tuple("Stathis", "foo@bar.com", 1);
+val (firstName, lastName) = Customer("lorem", "ipsum")
 val countryAndCity = mapOf(
                 Pair("Madrid", "Spain"), 
-                "Paris" to "France")
-for ((city, country) in countryAndCity) {
-  ...
-}
-
+                "Paris" to "France"))
+for ((city, country) in countryAndCity) { ... }
 // ranges
-val listOfNumers = 1..100
-for (numer in listOfNumers) {
-  println(numer)
-}
-
+for (numer in 1..100) { .. }
+1..100.filter { e -> e % 2 == 0 }.map { ... }
 ```
 
 ---
@@ -271,14 +252,11 @@ for (numer in listOfNumers) {
 ```kotlin
 // classes by default final, add `open` to inherit from
 open class Person { }
-
 class Employee(val vacationDays: Int): Person() {}
-
 class Contractor: Person()
 
 fun validateVacations(person: Person) {
   if (person is Employee) {
-    
     // casting is inferred by the compiler (smart cast)
     if (person.vacationDays != 20) {
       println("You need to take some more time off!")
@@ -289,21 +267,19 @@ fun validateVacations(person: Person) {
 
 ---
 
-### Safe navigation
+### Safe Calls
 
 ```kotlin
-class CustomerServiceInKotlin {
-    fun validateCustomer(customer: Customer) {
-        if (customer.firstName.startsWith("A")) { .. }
-        if (customer.lastName.startsWith("B")) { .. }
-    }
+val customer: Customer = ...
+println(customer.firstName)
 
-    fun validateCustomer1(customer: Customer?) {
-        if (customer?.firstName!!.startsWith("A")) { .. }
-        if (customer!!.lastName.startsWith("B")) { .. }
-    }
-    // anything that comes form java comes with null
-}
+val customer: Customer = ...
+println(customer?.firstName) // if customer null then prints null
+
+// elvis operator
+val l: Int = if (b != null) b.length else -1
+val l = b?.length ?: -1
+
 ```
 
 ---
@@ -311,16 +287,13 @@ class CustomerServiceInKotlin {
 ### Micro DSL 
 
 ```kotlin
-fun using(obj: Closeable, action: () -> Unit) {
-  try {
-    action()
-  } finally {
-    obj.close()
-  }
+// Spring 5 FunctionRouter registration in kotlin
+"/posts".nest {
+  GET("/{id}", blogHandler::getBlogPost)
+  GET("/",     blogHandler::getBlogPosts)
 }
-
-using(o) {
-  // do something with the object
+accept(TEXT_EVENT_STREAM).nest { 
+  GET("/match", blogHandler::matchClock) 
 }
 ```
 
@@ -339,13 +312,12 @@ typealias MapOfStringsToObjects = HashMap<String, Object>
 ```kotlin
 val validNumbers = arrayOf(100, 42, 5566, 234)
 
-fun tryWhen(val x: Int): Unit {
-    when(x) {
-        in 1..10 -> print("x == 1")
-        in validNumbers -> print("x is valid range")
-        !in 10..20 -> print("x is ouside range")
-        else -> print("None of the above")
-    }
+when(x) {
+  in 1..10 -> print("x == 1")
+  in validNumbers -> print("x is valid range")
+  !in 10..20 -> print("x is ouside range")
+  is ClassName -> ... (smart cast also works here)
+  else -> print("None of the above")
 }
 ```
 
@@ -373,10 +345,8 @@ public String foo(String name) {
 ### Can be replaced with one function
 
 ```kotlin
-fun foo(name: String, 
-        number: Int = 42, 
-        toUpperCase: Boolean = false) =
-             (if (toUpperCase) name.toUpperCase() else name) + number
+fun foo(name: String,number: Int = 42, toUpperCase: Boolean = false) =
+   (if (toUpperCase) name.toUpperCase() else name) + number
              
 fun useFoo() = listOf(
         foo("a"),
@@ -407,12 +377,14 @@ public void sendMessageToClient(
 
 ---
 
-###
+### Null safety in Kotlin
 
 ```kotlin
 fun sendMessageToClient(
         client: Client?, message: String?) {
-    sendMessage(client?.personalInfo?.email ?: return, message ?: return );
+    sendMessage(
+      client?.personalInfo?.email ?: return, 
+      message ?: return );
 }
 
 class Client (val personalInfo: PersonalInfo?)
@@ -427,11 +399,9 @@ class PersonalInfo (val email: String?)
 
 ```kotlin
 class CopyPrinter(copier: Copy, printer: Print) : Copy by copier, Print by printer
-
 interface Copy {
     fun copy(page: Page): Page
 }
-
 interface Print {
     fun print(page: Page)
 }
@@ -485,20 +455,6 @@ fun eval(e: Expr): Int =
   }
 ```
 
----
-
-### Don't do this :)
-
-```kotlin
-// method names can be free text
-infix fun CharSequence.`are you ok man`(arg1 : String) 
-        = println("Yeap")
-
-fun main(args: Array<String>) {
-    // with infix methods can skip the '(', ')'
-    "Stathis Souris " `are you ok man` "?"
-}
-```
 ---
 
 - Devoxx UK 2017 - Russel Winder 
