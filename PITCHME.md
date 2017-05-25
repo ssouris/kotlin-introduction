@@ -2,15 +2,26 @@
 
 ![LOGO](https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png)
 
+by Stathis Souris
+
+---
+
+### What is Kotlin?
+
+Kotlin is a statically-typed programming language that runs on the Java Virtual Machine 
+and also can be compiled to JavaScript source code or uses the LLVM compiler infrastructure. 
+Its primary development is from a team of JetBrains programmers based in Saint Petersburg, 
+Russia (the name comes from Kotlin Island, near St. Petersburg).
+
 ---
 
 ### Why Kotlin?
-  - Conciseness & Smarter API
-  - Null Safety & Immutability protection
-  - Type Inference, Statis Typing & Smart Casts
+  - Concise & Smarter API
+  - Null Safety & Immutability
+  - Type Inference, Static Typing & Smart Casts
   - Open programming styles
-  - Java Interop
-  - Fully open source (built by Jetbrains)
+  - Java Interoperability
+  - Fully open source under Apache 2.0
   - Static typing & type inference
   - Modern language features
   - 1st grade tooling
@@ -21,17 +32,12 @@
 
  - String templates
  - Properties
- - Lamdas
+ - Lamdas (nuff said)
  - Data class
- - Smart cast
- - Null Safety
  - Lazy property
  - Default values for function parameters
  - Extension Functions
- - No semi-colon
- - single expression functions
  - when expression
- - collections
  
 ---
 
@@ -344,19 +350,6 @@ fun tryWhen(val x: Int): Unit {
         else -> print("None of the above")
     }
 }
-```
-
----
-
-### 
-
-SAM Conversions:
-
-```kotlin
-val runnable = Runnable { println("This runs in a runnable") }
-val executor = ThreadPoolExecutor()
-// Java signature: void execute(Runnable command)
-executor.execute { println("This runs in a thread pool") }
 ```
 
 ---
