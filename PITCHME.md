@@ -37,28 +37,7 @@ Russia (the name comes from Kotlin Island, near St. Petersburg).
  - when expression
  
 ---
-
-### The Java Platform is...
-
-- ...a mature and extensive hardware independent platform.
-- ...evolving very, very slowly
-- ...a platform for many programming languages:
-- Java, Scala, Kotlin, Ceylon, Frege, Groovy, Fantom, Gosu, ...
-- Groovy, Clojure, JRuby, Jython, Golo
-
-attributes to Russel Winder talk on DevoxUK
----
-
-### Why we need change?
-
-- Change threatens backward compatibility
-- Change enabled new knowledge, new techniques, new tools
-- How do we make SF easier and nicer for ourselves
-- Where would we be if we didn't embrace change 
-   (Machine language?, Assembly?)
-
----
-
+ 
 ### Kotlin runtime
 <table>
   <tr>
@@ -111,6 +90,27 @@ attributes to Russel Winder talk on DevoxUK
     <td>8069</td>
   </tr>
 </table> 
+
+---
+
+### The Java Platform is...
+
+- ...a mature and extensive hardware independent platform.
+- ...evolving very, very slowly
+- ...a platform for many programming languages:
+- Java, Scala, Kotlin, Ceylon, Frege, Groovy, Fantom, Gosu, ...
+- Groovy, Clojure, JRuby, Jython, Golo
+
+attributes to Russel Winder talk on DevoxUK
+---
+
+### Why we need change?
+
+- Change threatens backward compatibility
+- Change enabled new knowledge, new techniques, new tools
+- How do we make SF easier and nicer for ourselves
+- Where would we be if we didn't embrace change 
+   (Machine language?, Assembly?)
 
 ---
 
