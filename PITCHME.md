@@ -40,8 +40,9 @@ Russia (the name comes from Kotlin Island, near St. Petersburg).
 
 ---
 
-Influenced by
-![LOGO](http://s.pdfdrive.com/assets/thumbs/226/2266a3ffa6a999178a6427941a891173.jpg)
+### Influenced by
+
+![LOGO](http://ecx.images-amazon.com/images/I/51poMjBx7PL.jpg)
 
 ---
 
