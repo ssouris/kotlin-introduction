@@ -234,22 +234,6 @@ fun `extension methods`() {
 
 ---
 
-### Higher order functions
-
-```kotlin
-fun `Higher order functions`() {
-  
-  // this actually means a function that accepts a function
-
-  fun <T> List<T>.filter(predicate: (T) -> Boolean): List<T> {
-    // ...
-    return emptyList()
-  }
-}
-```
-
----
-
 ### Other goodies
 
 ```kotlin
