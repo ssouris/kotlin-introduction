@@ -36,7 +36,8 @@ enough with the philosophy
 Kotlin is a statically-typed programming language that runs on the Java Virtual Machine 
 and also can be compiled to JavaScript source code or uses the LLVM compiler infrastructure. 
 Its primary development is from a team of JetBrains programmers based in Saint Petersburg, 
-Russia (the name comes from Kotlin Island, near St. Petersburg).
+Russia (the 
+comes from Kotlin Island, near St. Petersburg).
 
 ---
 
@@ -161,12 +162,10 @@ fun sayHi(hello: String = "Hello",
     println("$hello, $world!")
 }
 
-fun main(args: Array<String>) {
-    sayHi()                 // Hello World!
-    sayHi(name = "Stathis") // Hello Stathis!
-    sayHi(name = "Stathis",    // Stathis lorem ipsum!
-            greeting = "lorem ipsum")
-}
+sayHi()                 // Hello World!
+sayHi(hello = "Stathis") // Hello Stathis!
+sayHi(hello = "Stathis",    // Stathis lorem ipsum!
+      world = "lorem ipsum")
 ```
 
 ---
