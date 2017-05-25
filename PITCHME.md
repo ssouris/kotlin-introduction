@@ -10,12 +10,7 @@
   - Type Inference, Statis Typing & Smart Casts
   - Open programming styles
   - Java Interop
-
----
-
-### Why Kotlin?
   - Fully open source (built by Jetbrains)
-  - Run on Java 6+
   - Static typing & type inference
   - Modern language features
   - 1st grade tooling
@@ -32,9 +27,6 @@
  - Null Safety
  - Lazy property
  - Default values for function parameters
-
----
- 
  - Extension Functions
  - No semi-colon
  - single expression functions
@@ -52,6 +44,16 @@
 - Groovy, Clojure, JRuby, Jython, Golo
 
 attributes to Russel Winder talk on DevoxUK
+---
+
+### Why we need change?
+
+- Change threatens backward compatibility
+- Change enabled new knowledge, new techniques, new tools
+- How do we make SF easier and nicer for ourselves
+- Where would we be if we didn't embrace change 
+   (Machine language?, Assembly?)
+
 ---
 
 ### Kotlin runtime
@@ -238,11 +240,15 @@ fun `extension methods`() {
 
 ```kotlin
 // decomposing parameters
-val (name, email, id) = Tuple("Stathis", "stathis.souris@stathis.com", 1);
+val (name, email, id) = 
+    Tuple("Stathis", "stathis.souris@stathis.com", 1);
 
-val (firstName, lastName) = Customer(firstName="lol", lastName = "lol1")
+val (firstName, lastName) = 
+    Customer(firstName="lol", lastName = "lol1")
 
-val countryAndCity = listOf(Pair("Madrid", "Spain"), "Paris" to "France")
+val countryAndCity = mapOf(
+                Pair("Madrid", "Spain"), 
+                "Paris" to "France")
 for ((city, country) in countryAndCity) {
   ...
 }
