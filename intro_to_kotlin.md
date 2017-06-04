@@ -1,10 +1,10 @@
-## A practical intro to Kotlin
+# A practical intro to Kotlin
 
 ![LOGO](https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png)
 
 by Stathis Souris
 
-### The Java Platform is...
+## The Java Platform is...
 
 - ...a mature and extensive hardware independent platform.
 - ...evolving very, very slowly
@@ -12,7 +12,7 @@ by Stathis Souris
 - Java, Scala, Kotlin, Ceylon, Frege, Groovy, Fantom, Gosu, ...
 - Groovy, Clojure, JRuby, Jython, Golo
 
-### Why we need change?
+## Why we need change?
 
 - Change threatens backward compatibility
 - Change enabled new knowledge, new techniques, new tools
@@ -20,7 +20,7 @@ by Stathis Souris
 - Where would we be if we didn't embrace change 
    (Machine language?, Assembly?)
 
-### What is Kotlin?
+## What is Kotlin?
 
 Kotlin is a statically-typed programming language that runs on the Java Virtual Machine 
 and also can be compiled to JavaScript source code or uses the LLVM compiler infrastructure. 
@@ -31,7 +31,7 @@ Russia (the name comes from Kotlin Island, near St. Petersburg).
 
 ![LOGO](http://ecx.images-amazon.com/images/I/51poMjBx7PL.jpg)
 
-### Why Kotlin?
+## Why Kotlin?
  - Open source under Apache 2.0
  - Expressive
  - Null Safety & Immutability
@@ -70,7 +70,7 @@ Russia (the name comes from Kotlin Island, near St. Petersburg).
   </tr>
 </table>
 
-### Compared to Groovy and Scala runtimes
+## Compared to Groovy and Scala runtimes
 
 <table>
   <tr>
@@ -96,7 +96,7 @@ Russia (the name comes from Kotlin Island, near St. Petersburg).
   </tr>
 </table> 
 
-#### val/var
+## val/var
 
 In Kotlin favours immutability over mutability. 
 
@@ -109,7 +109,7 @@ aString = "Lorem Ipsum Lorem ipsum" // compiler error
 var mutableString :String = "Lorem ipsum"// underlined by IDE
 ```
 
-#### type inference
+## type inference
 
 Types can be infered (when there is enough information about them)
 
@@ -118,7 +118,7 @@ val anInt = 42 // compiler infers type to Int
 val someString = "Lorem Ipsum"
 ```
 
-#### functions
+## functions
 
 ```kotlin
 fun add(left: Int, right: Int): Int {
@@ -126,7 +126,7 @@ fun add(left: Int, right: Int): Int {
 }
 ```
 
-#### named & default args
+## named & default args
 
 ```kotlin
 fun sayHi(hello: String = "Hello",
@@ -154,7 +154,7 @@ fun getResult(condition: Boolean): String {
 }
 ```
 
-## If statement as an expression (better) 2/3
+### If statement as an expression (better) 2/3
 
 ```kotlin
 fun getResult(condition: Boolean): String {
@@ -173,7 +173,7 @@ fun getResult(condition: Boolean) =
   if (condition) "Service OK" else "Service Failure"
 ```
 
-### String interpolation
+## String interpolation
 
 String interpolation and string templates
 
@@ -192,7 +192,7 @@ fun main (args: List<String>) {
 }
 ```
 
-### Extension methods
+## Extension methods
 
 ```kotlin
 fun Date.isTuesday() : Boolean {
@@ -207,7 +207,7 @@ if (epoch.isTuesday()) {
 }
 ```
 
-### Destructuring
+## Destructuring
 
 Destructuring types is a nice concept that can lead to readable code.
 The nicest thing it that you can use it in lamdas too where you do not want
@@ -224,7 +224,7 @@ val countryAndCity = mapOf(
 for ((city, country) in countryAndCity) { ... }
 ```
 
-### Ranges
+## Ranges
 
 ```kotlin
 // ranges
@@ -232,7 +232,7 @@ for (numer in 1..100) { .. }
 1..100.filter { e -> e % 2 == 0 }.map { ... }
 ```
 
-### Smart cast
+## Smart cast
 
 The concept of smart cast makes code readable in cases where you check
 if a type is instanceOf a type and you end up casting the type a few lines later.
@@ -254,7 +254,7 @@ fun validateVacations(person: Person) {
 }
 ```
 
-### Safe Calls
+## Safe Calls
 
 In Kotlin by default everything is non-nullable. If you want 
 a type to be nullable you must explicitly add `?`.
@@ -274,7 +274,7 @@ val l = b?.length ?: -1
 
 ```
 
-### Micro DSL 
+## Micro DSL 
 
 You can build DSLs. Here is an example from Spring 5
 Functional Web API
@@ -290,9 +290,7 @@ accept(TEXT_EVENT_STREAM).nest {
 }
 ```
 
-
-
-# Type Alias
+## Type Alias
 
 You can rename a complex type
 
@@ -300,7 +298,7 @@ You can rename a complex type
 typealias MapOfStringsToObjects = HashMap<String, Object>
 ```
 
-### When
+## When
 
 ```kotlin
 val validNumbers = arrayOf(100, 42, 5566, 234)
@@ -314,9 +312,7 @@ when(x) {
 }
 ```
 
-
-
-### Java method overloading
+## Java method overloading
 
 ```java
 public String foo(String name, int number, boolean toUpperCase) {
@@ -333,9 +329,7 @@ public String foo(String name) {
 }
 ```
 
-
-
-### Can be replaced with one function
+## Can be replaced with one function
 
 ```kotlin
 fun foo(name: String,number: Int = 42, toUpperCase: Boolean = false) =
@@ -348,9 +342,7 @@ fun useFoo() = listOf(
         foo(name = "d", number = 2, toUpperCase = true))
 ```
 
-
-
-### Null checks in Java
+## Null checks in Java
 
 ```java
 public void sendMessageToClient(
@@ -368,9 +360,7 @@ public void sendMessageToClient(
 }
 ```
 
-
-
-### Null safety in Kotlin
+## Null safety in Kotlin
 
 ```kotlin
 fun sendMessageToClient(
@@ -386,7 +376,7 @@ class PersonalInfo (val email: String?)
 
 ```
 
-### Delegation in Kotlin
+## Delegation in Kotlin
 
 ```kotlin
 class CopyPrinter(copier: Copy, printer: Print) : Copy by copier, Print by printer
@@ -398,7 +388,7 @@ interface Print {
 }
 ```
 
-#### Java decompiled code
+### Java decompiled code
 
 ```java
 public final class CopyPrinter implements Copy, Print {
@@ -426,7 +416,7 @@ public final class CopyPrinter implements Copy, Print {
 }
 ``` 
 
-### Sealed classes
+## Sealed classes
 
 Defining restricted class hierarchies
 
@@ -442,6 +432,7 @@ fun eval(e: Expr): Int =
   }
 ```
 
+## Links
 
 - Devoxx UK 2017 - Russel Winder 
   https://www.youtube.com/watch?v=cFL_DDXBkJQ
