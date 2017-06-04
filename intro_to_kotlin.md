@@ -4,8 +4,6 @@
 
 by Stathis Souris
 
----
-
 ### The Java Platform is...
 
 - ...a mature and extensive hardware independent platform.
@@ -14,57 +12,38 @@ by Stathis Souris
 - Java, Scala, Kotlin, Ceylon, Frege, Groovy, Fantom, Gosu, ...
 - Groovy, Clojure, JRuby, Jython, Golo
 
----
-
 ### Why we need change?
 
 - Change threatens backward compatibility
 - Change enabled new knowledge, new techniques, new tools
-- How do we make SF easier and nicer for ourselves
+- How do we make software engineering easier and nicer for ourselves
 - Where would we be if we didn't embrace change 
    (Machine language?, Assembly?)
-
----
-
-enough with the philosophy
-
----
 
 ### What is Kotlin?
 
 Kotlin is a statically-typed programming language that runs on the Java Virtual Machine 
 and also can be compiled to JavaScript source code or uses the LLVM compiler infrastructure. 
 Its primary development is from a team of JetBrains programmers based in Saint Petersburg, 
-Russia (the 
-comes from Kotlin Island, near St. Petersburg).
+Russia (the name comes from Kotlin Island, near St. Petersburg).
 
----
-
-### Influenced by
+### Influenced by Effective Java
 
 ![LOGO](http://ecx.images-amazon.com/images/I/51poMjBx7PL.jpg)
 
----
-
 ### Why Kotlin?
-  - Open source under Apache 2.0
-  - Expressive
-  - Null Safety & Immutability
-  - Type Inference, Smart Casts
-  - Java Interoperability
-  - String templates
-  - Open programming styles
----
-
-### More about Kotlin
-
+ - Open source under Apache 2.0
+ - Expressive
+ - Null Safety & Immutability
+ - Type Inference, Smart Casts
+ - Java Interoperability
+ - String templates
+ - Open programming styles
  - Lamdas feel at home (nuff said)
  - Data class
  - Default values for function parameters
  - Extension Functions
  - when expression (switch on steroids)
- 
----
  
 ### Kotlin runtime
 <table>
@@ -91,9 +70,7 @@ comes from Kotlin Island, near St. Petersburg).
   </tr>
 </table>
 
----
-
-## Compared to other runtimes
+### Compared to Groovy and Scala runtimes
 
 <table>
   <tr>
@@ -119,9 +96,9 @@ comes from Kotlin Island, near St. Petersburg).
   </tr>
 </table> 
 
----
-
 #### val/var
+
+In Kotlin favours immutability over mutability. 
 
 ```kotlin
 // val = immutable object
@@ -132,16 +109,14 @@ aString = "Lorem Ipsum Lorem ipsum" // compiler error
 var mutableString :String = "Lorem ipsum"// underlined by IDE
 ```
 
----
-
 #### type inference
+
+Types can be infered (when there is enough information about them)
 
 ```kotlin
 val anInt = 42 // compiler infers type to Int
 val someString = "Lorem Ipsum"
 ```
-
----
 
 #### functions
 
@@ -150,8 +125,6 @@ fun add(left: Int, right: Int): Int {
     return left + right
 }
 ```
-
----
 
 #### named & default args
 
@@ -167,8 +140,6 @@ sayHi(hello = "Stathis",    // Stathis lorem ipsum!
       world = "lorem ipsum")
 ```
 
----
-
 ## If statement as an expression (Java style) 1/3
 
 ```kotlin
@@ -183,8 +154,6 @@ fun getResult(condition: Boolean): String {
 }
 ```
 
----
-
 ## If statement as an expression (better) 2/3
 
 ```kotlin
@@ -196,7 +165,6 @@ fun getResult(condition: Boolean): String {
     }
 }
 ```
----
 
 ### If statement as an expression (Kotlin way) 3/3
 
@@ -205,12 +173,17 @@ fun getResult(condition: Boolean) =
   if (condition) "Service OK" else "Service Failure"
 ```
 
----
-
 ### String interpolation
+
+String interpolation and string templates
 
 ```kotlin
 val customer = Customer("Stathis", "Souris")
+
+val templatedString = """
+|${customer.firstName}
+|${customer.lastName}
+"""
 
 fun main (args: List<String>) {
   println("Name is ${customer.firstName}")
@@ -218,8 +191,6 @@ fun main (args: List<String>) {
   println("Name is $customer")
 }
 ```
-
----
 
 ### Extension methods
 
@@ -236,26 +207,36 @@ if (epoch.isTuesday()) {
 }
 ```
 
----
+### Destructuring
 
-### Other goodies
+Destructuring types is a nice concept that can lead to readable code.
+The nicest thing it that you can use it in lamdas too where you do not want
+to be chatty
 
 ```kotlin
-// decomposing parameters
+// destructuring parameters
 val (name, email, id) = Tuple("Stathis", "foo@bar.com", 1);
 val (firstName, lastName) = Customer("lorem", "ipsum")
+listOf(Customer("lorem", "ipsum")).map { (firstName, lastName) -> ..... }
 val countryAndCity = mapOf(
                 Pair("Madrid", "Spain"), 
                 "Paris" to "France"))
 for ((city, country) in countryAndCity) { ... }
+```
+
+### Ranges
+
+```kotlin
 // ranges
 for (numer in 1..100) { .. }
 1..100.filter { e -> e % 2 == 0 }.map { ... }
 ```
 
----
-
 ### Smart cast
+
+The concept of smart cast makes code readable in cases where you check
+if a type is instanceOf a type and you end up casting the type a few lines later.
+In Kotlin this will not happen.
 
 ```kotlin
 // classes by default final, add `open` to inherit from
@@ -273,9 +254,12 @@ fun validateVacations(person: Person) {
 }
 ```
 
----
-
 ### Safe Calls
+
+In Kotlin by default everything is non-nullable. If you want 
+a type to be nullable you must explicitly add `?`.
+So when you want to access a property from a nullable type you must use
+`?.` or else the compiler will not let you.
 
 ```kotlin
 val customer: Customer = ...
@@ -290,9 +274,10 @@ val l = b?.length ?: -1
 
 ```
 
----
-
 ### Micro DSL 
+
+You can build DSLs. Here is an example from Spring 5
+Functional Web API
 
 ```kotlin
 // Spring 5 FunctionRouter registration in kotlin
@@ -305,15 +290,15 @@ accept(TEXT_EVENT_STREAM).nest {
 }
 ```
 
----
+
 
 # Type Alias
+
+You can rename a complex type
 
 ```kotlin
 typealias MapOfStringsToObjects = HashMap<String, Object>
 ```
-
----
 
 ### When
 
@@ -329,7 +314,7 @@ when(x) {
 }
 ```
 
----
+
 
 ### Java method overloading
 
@@ -348,7 +333,7 @@ public String foo(String name) {
 }
 ```
 
----
+
 
 ### Can be replaced with one function
 
@@ -363,7 +348,7 @@ fun useFoo() = listOf(
         foo(name = "d", number = 2, toUpperCase = true))
 ```
 
----
+
 
 ### Null checks in Java
 
@@ -383,7 +368,7 @@ public void sendMessageToClient(
 }
 ```
 
----
+
 
 ### Null safety in Kotlin
 
@@ -401,8 +386,6 @@ class PersonalInfo (val email: String?)
 
 ```
 
----
-
 ### Delegation in Kotlin
 
 ```kotlin
@@ -415,9 +398,7 @@ interface Print {
 }
 ```
 
----
-
-### Java decompiled code
+#### Java decompiled code
 
 ```java
 public final class CopyPrinter implements Copy, Print {
@@ -443,9 +424,7 @@ public final class CopyPrinter implements Copy, Print {
       this.$$delegate_1.print(page);
    }
 }
-....
-```
---- 
+``` 
 
 ### Sealed classes
 
@@ -463,7 +442,6 @@ fun eval(e: Expr): Int =
   }
 ```
 
----
 
 - Devoxx UK 2017 - Russel Winder 
   https://www.youtube.com/watch?v=cFL_DDXBkJQ
